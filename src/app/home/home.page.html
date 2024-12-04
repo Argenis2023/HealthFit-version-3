@@ -3,7 +3,7 @@
     <img src="https://i.imgur.com/efw9usT.jpeg" />
     <ion-card-header>
       <ion-card-title class="text-center">¡Bienvenido a HealthFit!</ion-card-title>
-    </ion-card-header>  
+    </ion-card-header>
     <ion-card-content class="text-justify">
       Descubre tu mejor versión con nuestras guías de ejercicio y alimentación
       saludable. Estamos aquí para ayudarte a alcanzar tus metas de bienestar físico
@@ -12,13 +12,16 @@
       <br /><br />
       <p class="text-justify">
         ¿Quieres comenzar ahora? Ve al menú y presiona la sección "Tu cuerpo" 💪😊
-      </p><br />
+      </p>
+      <br />
+      <!-- Contenido del clima -->
       <div *ngIf="clima" class="fade-slide-in">
-        <p class="text-center">¡NO OLVIDES PROTEGERTE DEL CLIMA!</p><br />
-        <p>Ciudad: {{ clima.location.name }}  🏙️</p>
+        <p class="text-center">¡NO OLVIDES PROTEGERTE DEL CLIMA!</p>
+        <br />
+        <p>Ciudad: {{ clima.location.name }} 🏙️</p>
         <p>Temperatura: {{ clima.current.temp_c }}°C 🌡️</p>
         <p>Viento: {{ clima.current.wind_kph }} km/h 🍃</p>
-        <p>Clima: {{ clima.current.condition.text }}</p>
+        <p>Condición: {{ clima.current.condition.text }}</p>
         <img [src]="'https:' + clima.current.condition.icon" alt="Ícono del clima" />
       </div>
       <div *ngIf="!clima">
@@ -27,3 +30,8 @@
     </ion-card-content>
   </ion-card>
 </ion-content>
+
+
+
+
+

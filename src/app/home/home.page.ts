@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ClimaService, Clima } from '../service/clima.service';
-import { Geolocation } from '@capacitor/geolocation';
+import { ClimaService } from '../service/clima.service';
+import { Clima } from '../interface/clima.interface';
 
 @Component({
   selector: 'app-home',
@@ -13,31 +13,21 @@ export class HomePage implements OnInit {
   constructor(private climaService: ClimaService) {}
 
   ngOnInit(): void {
-    this.obtenerUbicacion(); // Llama al método para obtener la ubicación.
+    this.obtenerClimaPorCiudad('Santiago');
   }
 
-  async obtenerUbicacion(): Promise<void> {
-    try {
-      // Solicita la ubicación actual del dispositivo
-      const position = await Geolocation.getCurrentPosition();
-      const lat = position.coords.latitude; // Obtiene la latitud
-      const lon = position.coords.longitude; // Obtiene la longitud
-      this.obtenerClima(lat, lon); // Llama al método para obtener el clima con las coordenadas
-    } catch (error) {
-      console.error('Error al obtener la ubicación', error);
-    }
-  }
-
-  obtenerClima(lat: number, lon: number): void {
-    // Llama al servicio para obtener los datos del clima
-    this.climaService.obtenerClimaPorCoordenadas(lat, lon).subscribe(
+  obtenerClimaPorCiudad(city: string): void {
+    this.climaService.obtenerClima(city).subscribe(
       (data: Clima) => {
-        this.clima = data; // Almacena los datos del clima en la propiedad `clima`
+        this.clima = data;
         console.log('Clima obtenido:', data);
       },
-      (error) => {
-        console.error('Error al obtener datos del clima', error);
-      }
     );
   }
 }
+
+
+
+
+
+

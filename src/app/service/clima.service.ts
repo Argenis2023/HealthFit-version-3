@@ -1,20 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-export interface Clima {
-  location: {
-    name: string;
-  };
-  current: {
-    temp_c: number;
-    wind_kph: number;
-    condition: {
-      text: string;
-      icon: string;
-    };
-  };
-}
+import { Clima } from '../interface/clima.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -30,11 +17,13 @@ export class ClimaService {
     return this.http.get<Clima>(url);
   }
 
-  obtenerClimaPorCoordenadas(lat: number, lon: number): Observable<Clima> {
-    const url = `${this.Url}?key=${this.Key}&q=${lat},${lon}`;
-    return this.http.get<Clima>(url);
+  //obtenerClimaPorCoordenadas(lat: number, lon: number): Observable<Clima> {
+   // const url = `${this.Url}?key=${this.Key}&q=${lat},${lon}`;
+    //return this.http.get<Clima>(url);
   }
-}
+
+
+
 
 
 
